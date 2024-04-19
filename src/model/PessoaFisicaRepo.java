@@ -4,27 +4,56 @@
  */
 package model;
 
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PessoaFisicaRepo implements Serializable {
-    private List<PessoaFisica> pessoasFisicas = new ArrayList<>();
+public class PessoaFisicaRepo {
 
-    public void inserir(PessoaFisica pessoa) {
-        pessoasFisicas.add(pessoa);
+    private List<PessoaFisica> pessoasFisicas;
+
+    public PessoaFisicaRepo() {
+        this.pessoasFisicas = new ArrayList<>();
     }
 
-    public void persistir(String arquivo) throws IOException {
-        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(arquivo))) {
+    public void inserir(PessoaFisica pessoaFisica) {
+        pessoasFisicas.add(pessoaFisica);
+    }
+
+    public PessoaFisica buscarPorId(int id) {
+        for (PessoaFisica pessoa : pessoasFisicas) {
+            if (pessoa.getId() == id) {
+                return pessoa;
+            }
+        }
+        return null;
+    }
+
+    public void atualizar(PessoaFisica pessoaFisica) {
+        for (int i = 0; i < pessoasFisicas.size(); i++) {
+            if (pessoasFisicas.get(i).getId() == pessoaFisica.getId()) {
+                pessoasFisicas.set(i, pessoaFisica);
+                break;
+            }
+        }
+    }
+
+    public void remover(PessoaFisica pessoaFisica) {
+        pessoasFisicas.remove(pessoaFisica);
+    }
+
+    public void salvar(String nomeArquivo) throws IOException {
+        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(nomeArquivo))) {
             outputStream.writeObject(pessoasFisicas);
         }
     }
 
-    public void recuperar(String arquivo) throws IOException, ClassNotFoundException {
-        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(arquivo))) {
-            pessoasFisicas = (List<PessoaFisica>) inputStream.readObject();
+    @SuppressWarnings("unchecked")
+    public void recuperar(String nomeArquivo) throws IOException, ClassNotFoundException {
+        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(nomeArquivo))) {
+            List<PessoaFisica> pessoasRecuperadas = (List<PessoaFisica>) inputStream.readObject();
+            pessoasFisicas.clear(); // Limpa a lista atual
+            pessoasFisicas.addAll(pessoasRecuperadas); // Adiciona as pessoas recuperadas
         }
     }
 

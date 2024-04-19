@@ -4,14 +4,15 @@
  */
 package model;
 
-
 import java.io.Serializable;
 
 public class Pessoa implements Serializable {
+
     private int id;
     private String nome;
 
-    public Pessoa() {}
+    public Pessoa() {
+    }
 
     public Pessoa(int id, String nome) {
         this.id = id;
@@ -23,5 +24,4 @@ public class Pessoa implements Serializable {
         System.out.println("Nome: " + nome);
     }
 
- 
 }

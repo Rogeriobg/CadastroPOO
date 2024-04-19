@@ -23,5 +23,9 @@ public class PessoaJuridica extends Pessoa implements Serializable {
         System.out.println("CNPJ: " + cnpj);
     }
 
+    public int getId() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
    
 }
