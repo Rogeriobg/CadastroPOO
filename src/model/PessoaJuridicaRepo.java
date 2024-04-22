@@ -52,8 +52,8 @@ public class PessoaJuridicaRepo {
     public void recuperar(String nomeArquivo) throws IOException, ClassNotFoundException {
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(nomeArquivo))) {
             List<PessoaJuridica> pessoasRecuperadas = (List<PessoaJuridica>) inputStream.readObject();
-            pessoasJuridicas.clear(); // Limpa a lista atual
-            pessoasJuridicas.addAll(pessoasRecuperadas); // Adiciona as pessoas recuperadas
+            pessoasJuridicas.clear(); 
+            pessoasJuridicas.addAll(pessoasRecuperadas); 
         }
     }
 

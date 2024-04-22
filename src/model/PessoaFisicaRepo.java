@@ -52,8 +52,8 @@ public class PessoaFisicaRepo {
     public void recuperar(String nomeArquivo) throws IOException, ClassNotFoundException {
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(nomeArquivo))) {
             List<PessoaFisica> pessoasRecuperadas = (List<PessoaFisica>) inputStream.readObject();
-            pessoasFisicas.clear(); // Limpa a lista atual
-            pessoasFisicas.addAll(pessoasRecuperadas); // Adiciona as pessoas recuperadas
+            pessoasFisicas.clear(); 
+            pessoasFisicas.addAll(pessoasRecuperadas); 
         }
     }
 
