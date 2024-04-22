@@ -27,8 +27,19 @@ public class PessoaFisica extends Pessoa implements Serializable {
         System.out.println("Idade: " + idade);
     }
 
-    int getId() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public String getCpf() {
+        return cpf;
     }
 
+    public int getIdade() {
+        return idade;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public void setIdade(int idade) {
+        this.idade = idade;
+    }
 }

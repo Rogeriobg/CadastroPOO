@@ -6,11 +6,12 @@ package model;
 
 import java.io.Serializable;
 
-
 public class PessoaJuridica extends Pessoa implements Serializable {
+
     private String cnpj;
 
-    public PessoaJuridica() {}
+    public PessoaJuridica() {
+    }
 
     public PessoaJuridica(int id, String nome, String cnpj) {
         super(id, nome);
@@ -23,9 +24,11 @@ public class PessoaJuridica extends Pessoa implements Serializable {
         System.out.println("CNPJ: " + cnpj);
     }
 
-    public int getId() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public String getCnpj() {
+        return cnpj;
     }
 
-   
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
 }

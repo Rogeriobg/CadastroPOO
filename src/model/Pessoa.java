@@ -24,4 +24,19 @@ public class Pessoa implements Serializable {
         System.out.println("Nome: " + nome);
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 }

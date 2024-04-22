@@ -35,144 +35,159 @@ public class Main {
             try {
                 opcao = Integer.parseInt(reader.readLine());
                 switch (opcao) {
-                    case 1:
-                        System.out.println("Selecione o tipo (F - Pessoa Física, J - Pessoa Jurídica):");
-                        String tipo = reader.readLine().toUpperCase();
-                        if (tipo.equals("F")) {
-                            System.out.println("Digite o ID:");
-                            int idFisica = Integer.parseInt(reader.readLine());
-                            System.out.println("Digite o nome:");
-                            String nomeFisica = reader.readLine();
-                            System.out.println("Digite o CPF:");
-                            String cpf = reader.readLine();
-                            System.out.println("Digite a idade:");
-                            int idade = Integer.parseInt(reader.readLine());
+                  case 1:
+    System.out.println("Selecione o tipo (F - Pessoa Física, J - Pessoa Jurídica):");
+    String tipo = reader.readLine().toUpperCase();
+    if (tipo.equals("F")) {
+        System.out.println("Digite o ID:");
+        int idFisica = Integer.parseInt(reader.readLine());
+        System.out.println("Digite o nome:");
+        String nomeFisica = reader.readLine();
+        System.out.println("Digite o CPF:");
+        String cpf = reader.readLine();
+        System.out.println("Digite a idade:");
+        int idade = Integer.parseInt(reader.readLine());
 
-                            repoFisica.inserir(new PessoaFisica(idFisica, nomeFisica, cpf, idade));
-                            System.out.println("Pessoa Física incluída com sucesso.");
-                        } else if (tipo.equals("J")) {
-                            System.out.println("Digite o ID:");
-                            int idJuridica = Integer.parseInt(reader.readLine());
-                            System.out.println("Digite o nome:");
-                            String nomeJuridica = reader.readLine();
-                            System.out.println("Digite o CNPJ:");
-                            String cnpj = reader.readLine();
+        repoFisica.inserir(new PessoaFisica(idFisica, nomeFisica, cpf, idade));
+        System.out.println("Pessoa Física incluída com sucesso.");
+    } else if (tipo.equals("J")) {
+        System.out.println("Digite o ID:");
+        int idJuridica = Integer.parseInt(reader.readLine());
+        System.out.println("Digite o nome:");
+        String nomeJuridica = reader.readLine();
+        System.out.println("Digite o CNPJ:");
+        String cnpj = reader.readLine();
 
-                            repoJuridica.inserir(new PessoaJuridica(idJuridica, nomeJuridica, cnpj));
-                            System.out.println("Pessoa Jurídica incluída com sucesso.");
-                        } else {
-                            System.out.println("Opção inválida.");
-                        }
-                        break;
-                    case 2:
-                        System.out.println("Selecione o tipo (F - Pessoa Física, J - Pessoa Jurídica):");
-                        String tipoAlteracao = reader.readLine().toUpperCase();
-                        if (tipoAlteracao.equals("F")) {
-                            System.out.println("Digite o ID da Pessoa Física que deseja alterar:");
-                            int idPessoaFisica = Integer.parseInt(reader.readLine());
-                            PessoaFisica pessoaFisica = repoFisica.buscarPorId(idPessoaFisica);
-                            if (pessoaFisica != null) {
+        repoJuridica.inserir(new PessoaJuridica(idJuridica, nomeJuridica, cnpj));
+        System.out.println("Pessoa Jurídica incluída com sucesso.");
+    } else {
+        System.out.println("Opção inválida.");
+    }
+    break;
+case 2:
+    System.out.println("Selecione o tipo (F - Pessoa Física, J - Pessoa Jurídica):");
+    String tipoAlteracao = reader.readLine().toUpperCase();
+    if (tipoAlteracao.equals("F")) {
+        System.out.println("Digite o ID da Pessoa Física que deseja alterar:");
+        int idPessoaFisica = Integer.parseInt(reader.readLine());
+        PessoaFisica pessoaFisica = repoFisica.buscarPorId(idPessoaFisica);
+        if (pessoaFisica != null) {
+            System.out.println("Dados atuais da Pessoa Física:");
+            pessoaFisica.exibir();
 
-                                System.out.println("Dados atuais da Pessoa Física:");
-                                pessoaFisica.exibir();
+            System.out.println("Digite os novos dados da Pessoa Física:");
+            System.out.println("Digite o novo nome:");
+            String novoNome = reader.readLine();
+            System.out.println("Digite o novo CPF:");
+            String novoCpf = reader.readLine();
+            System.out.println("Digite a nova idade:");
+            int novaIdade = Integer.parseInt(reader.readLine());
 
-                                System.out.println("Digite os novos dados da Pessoa Física:");
+            pessoaFisica.setNome(novoNome);
+            pessoaFisica.setCpf(novoCpf);
+            pessoaFisica.setIdade(novaIdade);
 
-                                repoFisica.atualizar(pessoaFisica);
-                                System.out.println("Pessoa Física atualizada com sucesso.");
-                            } else {
-                                System.out.println("Pessoa Física com o ID fornecido não encontrada.");
-                            }
-                        } else if (tipoAlteracao.equals("J")) {
-                            System.out.println("Digite o ID da Pessoa Jurídica que deseja alterar:");
-                            int idPessoaJuridica = Integer.parseInt(reader.readLine());
-                            PessoaJuridica pessoaJuridica = repoJuridica.buscarPorId(idPessoaJuridica);
-                            if (pessoaJuridica != null) {
+            repoFisica.atualizar(pessoaFisica);
+            System.out.println("Pessoa Física atualizada com sucesso.");
+        } else {
+            System.out.println("Pessoa Física com o ID fornecido não encontrada.");
+        }
+    } else if (tipoAlteracao.equals("J")) {
+        System.out.println("Digite o ID da Pessoa Jurídica que deseja alterar:");
+        int idPessoaJuridica = Integer.parseInt(reader.readLine());
+        PessoaJuridica pessoaJuridica = repoJuridica.buscarPorId(idPessoaJuridica);
+        if (pessoaJuridica != null) {
+            System.out.println("Dados atuais da Pessoa Jurídica:");
+            pessoaJuridica.exibir();
 
-                                System.out.println("Dados atuais da Pessoa Jurídica:");
-                                pessoaJuridica.exibir();
+            System.out.println("Digite os novos dados da Pessoa Jurídica:");
+            System.out.println("Digite o novo nome:");
+            String novoNome = reader.readLine();
+            System.out.println("Digite o novo CNPJ:");
+            String novoCnpj = reader.readLine();
 
-                                System.out.println("Digite os novos dados da Pessoa Jurídica:");
+            pessoaJuridica.setNome(novoNome);
+            pessoaJuridica.setCnpj(novoCnpj);
 
-                                repoJuridica.atualizar(pessoaJuridica);
-                                System.out.println("Pessoa Jurídica atualizada com sucesso.");
-                            } else {
-                                System.out.println("Pessoa Jurídica com o ID fornecido não encontrada.");
-                            }
-                        } else {
-                            System.out.println("Opção inválida.");
-                        }
-                        break;
-                    case 3:
-                        System.out.println("Selecione o tipo (F - Pessoa Física, J - Pessoa Jurídica):");
-                        String tipoExclusao = reader.readLine().toUpperCase();
-                        if (tipoExclusao.equals("F")) {
-                            System.out.println("Digite o ID da Pessoa Física que deseja excluir:");
-                            int idPessoaFisica = Integer.parseInt(reader.readLine());
-                            PessoaFisica pessoaFisica = repoFisica.buscarPorId(idPessoaFisica);
-                            if (pessoaFisica != null) {
-                                repoFisica.remover(pessoaFisica);
-                                System.out.println("Pessoa Física excluída com sucesso.");
-                            } else {
-                                System.out.println("Pessoa Física com o ID fornecido não encontrada.");
-                            }
-                        } else if (tipoExclusao.equals("J")) {
-                            System.out.println("Digite o ID da Pessoa Jurídica que deseja excluir:");
-                            int idPessoaJuridica = Integer.parseInt(reader.readLine());
-                            PessoaJuridica pessoaJuridica = repoJuridica.buscarPorId(idPessoaJuridica);
-                            if (pessoaJuridica != null) {
-                                repoJuridica.remover(pessoaJuridica);
-                                System.out.println("Pessoa Jurídica excluída com sucesso.");
-                            } else {
-                                System.out.println("Pessoa Jurídica com o ID fornecido não encontrada.");
-                            }
-                        } else {
-                            System.out.println("Opção inválida.");
-                        }
-                        break;
-                    case 4:
-                        System.out.println("Selecione o tipo (F - Pessoa Física, J - Pessoa Jurídica):");
-                        String tipoExibicaoId = reader.readLine().toUpperCase();
-                        if (tipoExibicaoId.equals("F")) {
-                            System.out.println("Digite o ID da Pessoa Física que deseja exibir:");
-                            int idPessoaFisica = Integer.parseInt(reader.readLine());
-                            PessoaFisica pessoaFisica = repoFisica.buscarPorId(idPessoaFisica);
-                            if (pessoaFisica != null) {
-                                pessoaFisica.exibir();
-                            } else {
-                                System.out.println("Pessoa Física com o ID fornecido não encontrada.");
-                            }
-                        } else if (tipoExibicaoId.equals("J")) {
-                            System.out.println("Digite o ID da Pessoa Jurídica que deseja exibir:");
-                            int idPessoaJuridica = Integer.parseInt(reader.readLine());
-                            PessoaJuridica pessoaJuridica = repoJuridica.buscarPorId(idPessoaJuridica);
-                            if (pessoaJuridica != null) {
-                                pessoaJuridica.exibir();
-                            } else {
-                                System.out.println("Pessoa Jurídica com o ID fornecido não encontrada.");
-                            }
-                        } else {
-                            System.out.println("Opção inválida.");
-                        }
-                        break;
-                    case 5:
-                        System.out.println("Selecione o tipo (F - Pessoa Física, J - Pessoa Jurídica):");
-                        String tipoExibicaoTodos = reader.readLine().toUpperCase();
-                        if (tipoExibicaoTodos.equals("F")) {
-                            List<PessoaFisica> pessoasFisicas = repoFisica.getPessoasFisicas();
-                            for (PessoaFisica pessoa : pessoasFisicas) {
-                                pessoa.exibir();
-                            }
-                        } else if (tipoExibicaoTodos.equals("J")) {
-                            List<PessoaJuridica> pessoasJuridicas = repoJuridica.getPessoasJuridicas();
-                            for (PessoaJuridica pessoa : pessoasJuridicas) {
-                                pessoa.exibir();
-                            }
-                        } else {
-                            System.out.println("Opção inválida.");
-                        }
-                        break;
-                    case 6:
+            repoJuridica.atualizar(pessoaJuridica);
+            System.out.println("Pessoa Jurídica atualizada com sucesso.");
+        } else {
+            System.out.println("Pessoa Jurídica com o ID fornecido não encontrada.");
+        }
+    } else {
+        System.out.println("Opção inválida.");
+    }
+    break;
+case 3:
+    System.out.println("Selecione o tipo (F - Pessoa Física, J - Pessoa Jurídica):");
+    String tipoExclusao = reader.readLine().toUpperCase();
+    if (tipoExclusao.equals("F")) {
+        System.out.println("Digite o ID da Pessoa Física que deseja excluir:");
+        int idPessoaFisica = Integer.parseInt(reader.readLine());
+        PessoaFisica pessoaFisica = repoFisica.buscarPorId(idPessoaFisica);
+        if (pessoaFisica != null) {
+            repoFisica.remover(pessoaFisica);
+            System.out.println("Pessoa Física excluída com sucesso.");
+        } else {
+            System.out.println("Pessoa Física com o ID fornecido não encontrada.");
+        }
+    } else if (tipoExclusao.equals("J")) {
+        System.out.println("Digite o ID da Pessoa Jurídica que deseja excluir:");
+        int idPessoaJuridica = Integer.parseInt(reader.readLine());
+        PessoaJuridica pessoaJuridica = repoJuridica.buscarPorId(idPessoaJuridica);
+        if (pessoaJuridica != null) {
+            repoJuridica.remover(pessoaJuridica);
+            System.out.println("Pessoa Jurídica excluída com sucesso.");
+        } else {
+            System.out.println("Pessoa Jurídica com o ID fornecido não encontrada.");
+        }
+    } else {
+        System.out.println("Opção inválida.");
+    }
+    break;
+case 4:
+    System.out.println("Selecione o tipo (F - Pessoa Física, J - Pessoa Jurídica):");
+    String tipoExibicaoId = reader.readLine().toUpperCase();
+    if (tipoExibicaoId.equals("F")) {
+        System.out.println("Digite o ID da Pessoa Física que deseja exibir:");
+        int idPessoaFisica = Integer.parseInt(reader.readLine());
+        PessoaFisica pessoaFisica = repoFisica.buscarPorId(idPessoaFisica);
+        if (pessoaFisica != null) {
+            pessoaFisica.exibir();
+        } else {
+            System.out.println("Pessoa Física com o ID fornecido não encontrada.");
+        }
+    } else if (tipoExibicaoId.equals("J")) {
+        System.out.println("Digite o ID da Pessoa Jurídica que deseja exibir:");
+        int idPessoaJuridica = Integer.parseInt(reader.readLine());
+        PessoaJuridica pessoaJuridica = repoJuridica.buscarPorId(idPessoaJuridica);
+        if (pessoaJuridica != null) {
+            pessoaJuridica.exibir();
+        } else {
+            System.out.println("Pessoa Jurídica com o ID fornecido não encontrada.");
+        }
+    } else {
+        System.out.println("Opção inválida.");
+    }
+    break;
+case 5:
+    System.out.println("Selecione o tipo (F - Pessoa Física, J - Pessoa Jurídica):");
+    String tipoExibicaoTodos = reader.readLine().toUpperCase();
+    if (tipoExibicaoTodos.equals("F")) {
+        List<PessoaFisica> pessoasFisicas = repoFisica.getPessoasFisicas();
+        for (PessoaFisica pessoa : pessoasFisicas) {
+            pessoa.exibir();
+        }
+    } else if (tipoExibicaoTodos.equals("J")) {
+        List<PessoaJuridica> pessoasJuridicas = repoJuridica.getPessoasJuridicas();
+        for (PessoaJuridica pessoa : pessoasJuridicas) {
+            pessoa.exibir();
+        }
+    } else {
+        System.out.println("Opção inválida.");
+    }
+    break;
+                  case 6:
                         System.out.println("Digite o prefixo para os arquivos de salvamento:");
                         String prefixoSalvamento = reader.readLine();
                         try {
@@ -193,6 +208,7 @@ public class Main {
                         } catch (IOException | ClassNotFoundException e) {
                             System.out.println("Erro ao recuperar os dados: " + e.getMessage());
                         }
+                        break;
                     case 0:
                         System.out.println("Finalizando...");
                         break;
